@@ -1,0 +1,9 @@
+node_modules/
+out/
+.DS_Store
+
+# Your own media — don't commit these.
+public/clips/*
+public/music/*
+!public/clips/.gitkeep
+!public/music/.gitkeep

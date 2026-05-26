@@ -1,0 +1,25 @@
+{
+  "name": "instagram-reel-compiler",
+  "version": "1.0.0",
+  "description": "Drop video clips in a folder and render an Instagram Reel (9:16) with crossfades, background music and per-clip trimming using Remotion.",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "scan": "node scripts/scan.mjs",
+    "dev": "npm run scan && remotion studio",
+    "render": "npm run scan && remotion render Reel out/reel.mp4",
+    "upgrade": "remotion upgrade"
+  },
+  "dependencies": {
+    "@remotion/cli": "^4.0.0",
+    "@remotion/media-parser": "^4.0.467",
+    "@remotion/transitions": "^4.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "remotion": "^4.0.0"
+  },
+  "devDependencies": {
+    "@types/react": "^18.3.12",
+    "typescript": "^5.6.3"
+  }
+}
