@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0b0b12" />
+    <title>Reel Maker</title>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="icons/icon-192.png" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Reel Maker</h1>
+      <p class="sub">Stitch clips into a vertical Instagram Reel — on your phone.</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>1 · Clips</h2>
+        <label class="filebtn">
+          <input id="clipInput" type="file" accept="video/*" multiple hidden />
+          + Add clips
+        </label>
+        <p class="hint">They play top-to-bottom. Reorder or remove below.</p>
+        <ul id="clipList" class="clips"></ul>
+      </section>
+
+      <section class="card">
+        <h2>2 · Music <span class="opt">(optional)</span></h2>
+        <label class="filebtn">
+          <input id="musicInput" type="file" accept="audio/*" hidden />
+          + Add music
+        </label>
+        <p id="musicName" class="hint">No music — video will be silent.</p>
+      </section>
+
+      <section class="card">
+        <h2>3 · Settings</h2>
+        <div class="row">
+          <label for="format">Format</label>
+          <select id="format">
+            <option value="1080x1920" selected>Reel 9:16 (1080×1920)</option>
+            <option value="1080x1080">Square 1:1 (1080×1080)</option>
+            <option value="1920x1080">Landscape 16:9 (1920×1080)</option>
+          </select>
+        </div>
+        <div class="row">
+          <label for="maxClip">Max seconds / clip</label>
+          <input id="maxClip" type="number" min="0" step="0.5" value="5" />
+        </div>
+        <div class="row">
+          <label for="transition">Crossfade (sec)</label>
+          <input id="transition" type="number" min="0" step="0.1" value="0.5" />
+        </div>
+        <div class="row">
+          <label for="volume">Music volume</label>
+          <input id="volume" type="range" min="0" max="1" step="0.05" value="0.7" />
+        </div>
+      </section>
+
+      <button id="renderBtn" class="render" disabled>Add clips to start</button>
+
+      <section id="progressWrap" class="card hidden">
+        <div class="bar"><div id="bar" class="barFill"></div></div>
+        <p id="status" class="status">Preparing…</p>
+        <details>
+          <summary>Engine log</summary>
+          <pre id="log" class="log"></pre>
+        </details>
+      </section>
+
+      <section id="resultWrap" class="card hidden">
+        <h2>Done 🎬</h2>
+        <video id="result" controls playsinline></video>
+        <div class="actions">
+          <a id="download" class="filebtn" download="reel.mp4">Download</a>
+          <button id="share" class="filebtn ghost hidden">Share…</button>
+        </div>
+      </section>
+
+      <p class="footnote">
+        Runs entirely on your device. Best for a handful of short clips — long or
+        4K footage may be slow or run out of memory.
+      </p>
+    </main>
+
+    <script src="vendor/ffmpeg/ffmpeg.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
